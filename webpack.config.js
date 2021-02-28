@@ -9,6 +9,10 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  devtool: 'eval-source-map',  
+  devServer: {                 
+    contentBase: './dist'      
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin ({
@@ -25,7 +29,12 @@ module.exports = {
           'style-loader',
           'css-loader'
         ]
-      }
+      },
+      {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: "eslint-loader"
+    }
     ]
   }
 };
